@@ -1,0 +1,51 @@
+﻿@page "{id:int?}"
+@model RazorPagesMovies.Pages.Movies.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>Detalles de @Html.DisplayFor(model => model.Movie.Title)</h1>
+<hr />
+<div>
+    <div class="row">
+        <img src="@Html.DisplayFor(model => model.Movie.Rating)" class="card-img-top" alt="..." style="height: 360px;object-fit:cover;">
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Movie.ReleaseDate)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Movie.ReleaseDate)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Movie.Genre)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Movie.Genre)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Movie.Price)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Movie.Price)
+        </dd>
+        <dt class="col-sm-4">
+            Url de imagen
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Movie.Rating)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Movie.ID">Editar</a>
+    <a class="btn btn-outline-primary" asp-page="./Index">Volver a la lista</a>
+</div>

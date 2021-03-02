@@ -1,0 +1,73 @@
+﻿@page "{searchString?}"
+@model RazorPagesMovies.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1>Películas</h1>
+
+<p>
+    <a class="btn btn-sm btn-warning" asp-page="Create">Crear nuevo</a>
+</p>
+
+<form>
+    <p>
+        Género: <select class="mr-4" asp-for="MovieGenre" asp-items="Model.Genres">
+            <option value="">Todos</option>
+        </select>
+        Título: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Price)
+            </th>
+            <th>
+                Url de imagen          @*Rating*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-page="./Edit" asp-route-id="@item.ID">Editar</a>
+                    <a class="btn btn-sm btn-success" asp-page="./Details" asp-route-id="@item.ID">Detalles</a>
+                    <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

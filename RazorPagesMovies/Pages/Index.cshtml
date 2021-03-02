@@ -1,0 +1,79 @@
+﻿@page "{searchString?}"
+@model RazorPagesMovies.Pages.Movies.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenidos a AleMovies!</h1>
+</div>
+
+<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-pause='false'>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="2000">
+            <img src="https://i.imgur.com/q4d7gTQ.jpg" class="d-block w-100" alt="..." style="height: 240px;object-fit:contain;" />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="https://i.imgur.com/0V0PTzI.jpg" class="d-block w-100" alt="..." style="height: 240px;object-fit:contain;" />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="https://i.imgur.com/uTcmeUQ.jpg" class="d-block w-100" alt="..." style="height: 240px;object-fit:contain;" />
+        </div>
+        @*<div class='overlay'>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8 offset-md-4 text-center text-md-right">
+                        <h1>Visita Córdoba</h1>
+                        <p class="d-none d-md-block">Córdoba y sus paisajes invitan a sumergirse en una sucesión única de imágenes, lenguajes y sencaciones, que atraen a los turistas del país y del mundo, a descubrir las bellezas de esta provincia y tomar contacto con su impronta cultural e histórica, su perfil tradicional y moderno. Córdoba ocupa el sitio que le reservó el destino. Vení. Viví Córdoba.</p>
+                        <a href="#" class='btn btn-outline-success'>Lugares</a>
+                        <button type='button' class='btn btn-success ml-2'>Ver Hotel</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+<hr />
+
+<form>
+    <p>
+        Género: <select class="mr-4" asp-for="MovieGenre" asp-items="Model.Genres">
+            <option value="">Todos</option>
+        </select>
+        Título: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+
+<hr />
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model.Movie)
+        {
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 22rem;">
+                    <img src="@item.Rating" class="card-img-top" alt="..." style="height: 240px;object-fit:cover;">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                        </div>
+                        <div>
+                            <span class="badge rounded-pill bg-warning text-dark">@Html.DisplayFor(modelItem => item.Genre)</span>
+                        </div>
+                        <div>
+                            <span class="card-text">Costo: @Html.DisplayFor(modelItem => item.Price)</span>
+                        </div>
+                        <div>
+                            <small><span class="card-subtitle mb-2 text-muted">Lanzamiento: @Html.DisplayFor(modelItem => item.ReleaseDate)</span></small>
+                        </div>
+                        <div>
+                            <a class="btn btn-sm btn-success" asp-page="./Movies/Details" asp-route-id="@item.ID">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
